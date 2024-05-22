@@ -12,6 +12,7 @@ import Search from './pages/search';
 import PasswordResetForm from './pages/PasswordResetForm';
 import CodeVerificationForm from './pages/CodeVerificationForm'; 
 import NewPassword from './pages/NewPassword'; 
+import CompteErreur from './pages/erreurPage'; 
 
 
 
@@ -32,6 +33,8 @@ function App() {
         <Route path='/ResetPassword' element={<PasswordResetForm />} />
         <Route path='/Verification' element={<CodeVerificationForm />} />
         <Route path="/NewPassword/:id/:token" element={<NewPassword />} />
+        <Route path="/erreur" element={<CompteErreur />} />
+        <Route path="http://localhost:5000/auth/google" />
 
         <Route path='/logout' element={<Logout />} />
 

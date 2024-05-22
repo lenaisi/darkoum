@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate ,Link} from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import axios from 'axios';
@@ -7,7 +7,7 @@ import Navbar from '../../components/Navbar';
 import Footer from '../../components/footer';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
+// import Link from '@mui/material/Link';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Paper from '@mui/material/Paper';
@@ -17,7 +17,9 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import background from '../../assets/login-pana.png';
 import logo from '../../assets/avtr.png';
+import { FcGoogle } from "react-icons/fc";
 
+import "./style.css"
 const defaultTheme = createTheme();
 
 export default function SignInSide() {
@@ -155,6 +157,17 @@ export default function SignInSide() {
               >
                 Se connecter
               </Button>
+              <div className="google-sign-in">
+  <button type="button" >
+  <Link to="http://localhost:5000/auth/google"  >Continuer avec Google</Link>    <FcGoogle size={"25px"} className="iconeGoogle" />
+  </button>
+
+</div>
+
+
+
+
+
 
               <Grid container>
                 <Grid item xs>

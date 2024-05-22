@@ -4,6 +4,7 @@ import Footer from '../components/footer';
 import Section from '../components/Section';
 import Properties from '../components/properties';
 import Banner from '../components/Banner';
+import VirtualTour from '../components/VirtualTour'; 
 
 const Home = () => {
   return (
@@ -22,7 +23,10 @@ const Home = () => {
      <div className="properties">
       <Properties/>
      </div>
-      
+     
+     <div className="virtual-tour">
+       <VirtualTour />
+     </div>
 
       <div className="space-between-sections" style={styles.space}></div>
       <div className="footer-container"> 
