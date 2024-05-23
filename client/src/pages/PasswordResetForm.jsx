@@ -8,7 +8,11 @@ import Reset from '../assets/Reset password.png';
 import Navbar from '../components/Navbar';
 import Footer from '../components/footer'; 
 
+<<<<<<< HEAD
 export default function PasswordResetForm() {
+=======
+export default function ForgotPassword() {
+>>>>>>> f6edfea166a0d2aa7d4ca4fa19f0bf269a63414d
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
   const navigate = useNavigate();
@@ -16,11 +20,15 @@ export default function PasswordResetForm() {
   const handleSubmitEmail = async (e) => {
     e.preventDefault();
     try {
+<<<<<<< HEAD
      
+=======
+>>>>>>> f6edfea166a0d2aa7d4ca4fa19f0bf269a63414d
       if (!email) {
         setEmailError('Veuillez entrer une adresse e-mail.');
         return;
       }
+<<<<<<< HEAD
 
       
       if (!validateEmail(email)) {
@@ -31,6 +39,16 @@ export default function PasswordResetForm() {
   
       setEmailError('');
 
+=======
+  
+      if (!validateEmail(email)) {
+        setEmailError('Veuillez entrer une adresse e-mail valide se terminant par @gmail.com.');
+        return;
+      }
+  
+      setEmailError('');
+  
+>>>>>>> f6edfea166a0d2aa7d4ca4fa19f0bf269a63414d
       const response = await axios.post('http://localhost:5000/api/v1/auth/resetpassword', { email });
       console.log(response.data);
       
@@ -39,10 +57,19 @@ export default function PasswordResetForm() {
       console.error('Erreur lors de la soumission du formulaire ', error);
     }
   };
+<<<<<<< HEAD
 
   const validateEmail = (email) => {
     const re = /\S+@\S+\.\S+/;
     return re.test(email);
+=======
+  
+
+  const validateEmail = (email) => {
+    const re = /\S+@\S+\.\S+/;
+    const gmailRe = /@gmail\.com$/i; // Cette expression régulière vérifie si l'adresse se termine par @gmail.com
+    return re.test(email) && gmailRe.test(email);
+>>>>>>> f6edfea166a0d2aa7d4ca4fa19f0bf269a63414d
   };
 
   return (

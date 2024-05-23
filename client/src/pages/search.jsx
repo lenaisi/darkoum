@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import Navbar1 from '../components/Navbar';
 import TypeAnnonce from '../components/TypeAnnonce';
+<<<<<<< HEAD
 import PriceSelector from '../components/PriceRangeSelector';
+=======
+import PriceRangeSelector from '../components/PriceRangeSelector';
+>>>>>>> f6edfea166a0d2aa7d4ca4fa19f0bf269a63414d
 import HouseTypeSelector from '../components/HouseTypeSelector';
 import WilayaSelector from '../components/WilayaSelector';
 import home from '../assets/home.jpg';
@@ -14,19 +18,40 @@ const Search = () => {
         typeBien: '',
         wilaya: '',
         priceMin: '',
+<<<<<<< HEAD
         priceMax: '',
         
+=======
+        priceMax: ''
+>>>>>>> f6edfea166a0d2aa7d4ca4fa19f0bf269a63414d
     });
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+<<<<<<< HEAD
             const response = await axios.post('http://localhost:5000/api/v2/form/create', formData);
+=======
+            setFormData({
+                typeAnnonce: '',
+                typeBien: '',
+                wilaya: '',
+                priceMin: '',
+                priceMax: ''
+            });
+            const response = await axios.post('http://localhost:5000/api/v2/form/create', formData);
+            console.log(response.data);
+
+>>>>>>> f6edfea166a0d2aa7d4ca4fa19f0bf269a63414d
             
         } catch (error) {
             console.error('Erreur lors de la soumission du formulaire :', error);
         }
     };
+<<<<<<< HEAD
         
+=======
+    
+>>>>>>> f6edfea166a0d2aa7d4ca4fa19f0bf269a63414d
     return (
         <div>
             <Navbar1 /> 
@@ -38,6 +63,7 @@ const Search = () => {
                     <div style={styles.formRow}>
                             <div style={styles.formGroup}>
                                 <label htmlFor="type-annonce"> </label>
+<<<<<<< HEAD
                                 <TypeAnnonce onChange={(value) => setFormData({ ...formData, typeAnnonce: value })} />
 
                             </div>
@@ -50,11 +76,26 @@ const Search = () => {
                                 <label htmlFor="wilaya"></label>
                                 <WilayaSelector onChange={(value) => setFormData({ ...formData, wilaya: value })} />
 
+=======
+                                <TypeAnnonce value={formData.typeAnnonce} onChange={(value) => setFormData({...formData, typeAnnonce: value})} />
+                            </div>
+                            <div style={styles.formGroup}>
+                                <label htmlFor="house-type"></label>
+                                <HouseTypeSelector />
+                            </div>
+                            <div style={styles.formGroup}>
+                                <label htmlFor="wilaya"></label>
+                                <WilayaSelector />
+>>>>>>> f6edfea166a0d2aa7d4ca4fa19f0bf269a63414d
                             </div>
                         </div>
                         <div style={{ ...styles.formGroup, marginBottom: '30px' }}> 
                             <label htmlFor="price-range"></label>
+<<<<<<< HEAD
                             <PriceSelector onChange={(min, max) => setFormData({ ...formData, priceMin: min, priceMax: max })} />
+=======
+                            <PriceRangeSelector valueMin={formData.priceMin} valueMax={formData.priceMax} onChange={(min, max) => setFormData({...formData, priceMin: min, priceMax: max})} />
+>>>>>>> f6edfea166a0d2aa7d4ca4fa19f0bf269a63414d
                         </div>
                         <button style={styles.button} type="submit">Rechercher</button>
                     </form>

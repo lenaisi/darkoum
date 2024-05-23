@@ -53,11 +53,14 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+<<<<<<< HEAD
     role: {
       type: String,
       enum: ['user', 'admin'],
       default: 'user'
     }
+=======
+>>>>>>> f6edfea166a0d2aa7d4ca4fa19f0bf269a63414d
 },
   
 )

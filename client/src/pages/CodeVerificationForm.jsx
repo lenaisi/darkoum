@@ -1,13 +1,19 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Reset from '../assets/Reset password.png'; 
+=======
+import React from 'react';
+import Reset from '../assets/Mail-amico.svg'; 
+>>>>>>> f6edfea166a0d2aa7d4ca4fa19f0bf269a63414d
 import Navbar from '../components/Navbar';
 import Footer from '../components/footer';
 
 export default function CodeVerificationForm() {
+<<<<<<< HEAD
   const [code, setCode] = useState('');
   const [codeError, setCodeError] = useState('');
   const navigate = useNavigate();
@@ -31,10 +37,13 @@ export default function CodeVerificationForm() {
       console.error('Erreur lors de la soumission du code ', error);
     }
   };
+=======
+>>>>>>> f6edfea166a0d2aa7d4ca4fa19f0bf269a63414d
 
   return (
     <div>
       <Navbar />
+<<<<<<< HEAD
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
         <div style={{ marginRight: '50px', textAlign: 'center' }}>
           <img src={Reset} alt="Réinitialisation de mot de passe" style={{ maxWidth: '400px' }} />
@@ -69,6 +78,13 @@ export default function CodeVerificationForm() {
             </Grid>
           </form>
         </div>
+=======
+      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
+        <div style={{ maxWidth: '500px', margin: 'auto', textAlign: 'center', padding: '0 20px' }}>
+          <h2 style={{ marginBottom: '0px', marginTop: '150px' ,color: '#F27438', fontWeight: 'bold'}}>Pour réinitialiser votre mot de passe, veuillez accéder à votre boîte mail. Vous y trouverez un lien sécurisé qui vous permettra de procéder à la réinitialisation de votre mot de passe en toute simplicité.</h2>
+        </div>
+        <img src={Reset} alt="Réinitialisation de mot de passe" style={{ maxWidth: '400px', margin: 'auto' }} />
+>>>>>>> f6edfea166a0d2aa7d4ca4fa19f0bf269a63414d
       </div>
       <Footer /> 
     </div>

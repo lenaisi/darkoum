@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+<<<<<<< HEAD
 const HouseTypeSelector = ({ onChange }) => {
     const [selectedOption, setSelectedOption] = useState('');
 
@@ -7,6 +8,13 @@ const HouseTypeSelector = ({ onChange }) => {
         const selectedValue = event.target.value;
         setSelectedOption(selectedValue);
         onChange(selectedValue); // Appel de la fonction de rappel avec la nouvelle valeur sélectionnée
+=======
+const HouseTypeSelector = () => {
+    const [selectedOption, setSelectedOption] = useState(''); 
+
+    const handleOptionSelect = (event) => {
+        setSelectedOption(event.target.value); 
+>>>>>>> f6edfea166a0d2aa7d4ca4fa19f0bf269a63414d
     };
 
     return (
@@ -17,11 +25,18 @@ const HouseTypeSelector = ({ onChange }) => {
                 <option value="villa">Villa</option>
                 <option value="appartement">Appartement</option>
                 <option value="studio">Studio</option>
+<<<<<<< HEAD
+=======
+              
+>>>>>>> f6edfea166a0d2aa7d4ca4fa19f0bf269a63414d
             </select>
         </div>
     );
 };
 
 export default HouseTypeSelector;
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> f6edfea166a0d2aa7d4ca4fa19f0bf269a63414d
