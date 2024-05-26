@@ -6,23 +6,14 @@ import home3 from "../assets/villa.jpeg"
 
 const Properties = () => {
   return (
-<<<<<<< HEAD
-    <div className="properties" style={{ marginTop: '-100px' }}>
-      <h2 className="properties-title">Nos Annonces Disponibles</h2>
-=======
     <div className="properties" style={{ marginTop: '-0px' }}>
       <h2 className="properties-title">Nos coups de coeur</h2>
->>>>>>> f6edfea166a0d2aa7d4ca4fa19f0bf269a63414d
       <div className="property-list">
         <div className="property-card">
           <Link to="" className="property-link">
             <div className="card-content">
               <img src={home1} alt="home1" className="property-image" />
               <h3 className="property-title">Logement promotionnel public LPP</h3>
-<<<<<<< HEAD
-              
-=======
->>>>>>> f6edfea166a0d2aa7d4ca4fa19f0bf269a63414d
               <p className="property-price">Prix : $1200,000</p>
             </div>
           </Link>
@@ -46,12 +37,9 @@ const Properties = () => {
           </Link>
         </div>
       </div>
-<<<<<<< HEAD
-=======
       <div className="view-more-container">
         <Link to="/search" className="view-more-button">Voir plus</Link>
       </div>
->>>>>>> f6edfea166a0d2aa7d4ca4fa19f0bf269a63414d
 
       <style>
         {`
@@ -109,8 +97,6 @@ const Properties = () => {
           .property-card:hover .property-image {
             transform: scale(1.05);
           }
-<<<<<<< HEAD
-=======
 
           .view-more-container {
             margin-top: 80px;
@@ -131,7 +117,6 @@ const Properties = () => {
           .view-more-button:hover {
             background-color: darkorange;
           }
->>>>>>> f6edfea166a0d2aa7d4ca4fa19f0bf269a63414d
         `}
       </style>
     </div>

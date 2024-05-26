@@ -1,15 +1,4 @@
 import React, { useState } from 'react';
-<<<<<<< HEAD
-import { useNavigate } from "react-router-dom";
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import axios from 'axios';
-import Navbar from '../../components/Navbar'; 
-import Footer from '../../components/footer'; 
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
-=======
 import { useNavigate ,Link} from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -19,7 +8,6 @@ import Footer from '../../components/footer';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 // import Link from '@mui/material/Link';
->>>>>>> f6edfea166a0d2aa7d4ca4fa19f0bf269a63414d
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Paper from '@mui/material/Paper';
@@ -28,48 +16,15 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import background from '../../assets/login-pana.png';
-<<<<<<< HEAD
-import logo from '../../assets/avtr.png'; 
-
-=======
 import logo from '../../assets/avtr.png';
 import { FcGoogle } from "react-icons/fc";
 
 import "./style.css"
->>>>>>> f6edfea166a0d2aa7d4ca4fa19f0bf269a63414d
 const defaultTheme = createTheme();
 
 export default function SignInSide() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-<<<<<<< HEAD
-  const navigate = useNavigate();
-
-  const handleSubmit = async(e) => {
-
-    e.preventDefault();
-    try {
-      const response = await axios(
-        {
-          method : "post",
-          url: `http://localhost:5000/api/v1/auth/login`,
-          withCredentials: true,
-          data: {
-              email,
-              password,
-          }
-      })
-      console.log(response.data);
-      navigate('/home'); 
-       
-    } catch (error) {
-        console.error("Erreur lors de la soumission du formulaire ",error);
-       
-    }
-  };
-  const handleForgotPassword = () => {
-    navigate('/ResetPassword'); 
-=======
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
@@ -105,18 +60,12 @@ export default function SignInSide() {
 
   const handleForgotPassword = () => {
     navigate('/ResetPassword');
->>>>>>> f6edfea166a0d2aa7d4ca4fa19f0bf269a63414d
   };
 
   return (
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
       <Navbar sx={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 1 }} />
-<<<<<<< HEAD
-      
-=======
-
->>>>>>> f6edfea166a0d2aa7d4ca4fa19f0bf269a63414d
       <Grid container component="main" sx={{ height: '100vh', paddingTop: '64px' }}>
         <CssBaseline />
         <Grid
@@ -156,19 +105,12 @@ export default function SignInSide() {
                 id="email"
                 label="Email"
                 name="email"
-<<<<<<< HEAD
-                value={email}  
-                onChange={(e) => setEmail(e.target.value)}
-                autoComplete="email"
-                autoFocus
-=======
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 autoComplete="email"
                 autoFocus
                 error={error === "Veuillez remplir tous les champs." && email === ''}
                 helperText={error === "Veuillez remplir tous les champs." && email === '' ? error : null}
->>>>>>> f6edfea166a0d2aa7d4ca4fa19f0bf269a63414d
               />
               <TextField
                 margin="normal"
@@ -178,18 +120,6 @@ export default function SignInSide() {
                 label="Mot de passe"
                 type="password"
                 id="password"
-<<<<<<< HEAD
-                value={password} 
-                onChange={(e) => setPassword(e.target.value)} 
-                autoComplete="current-password"
-              />
-
-
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Se souvenir de moi"
-              />     
-=======
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 autoComplete="current-password"
@@ -210,7 +140,6 @@ export default function SignInSide() {
                 control={<Checkbox value="remember" color="primary" />}
                 label="Se souvenir de moi"
               />
->>>>>>> f6edfea166a0d2aa7d4ca4fa19f0bf269a63414d
               <Button
                 type="submit"
                 onClick={handleSubmit}
@@ -219,11 +148,7 @@ export default function SignInSide() {
                 sx={{
                   mt: 3,
                   mb: 2,
-<<<<<<< HEAD
-                  bgcolor: '#FF5733', 
-=======
                   bgcolor: '#FF5733',
->>>>>>> f6edfea166a0d2aa7d4ca4fa19f0bf269a63414d
                   '&:hover': {
                     bgcolor: '#E64A19',
                   },
@@ -231,12 +156,6 @@ export default function SignInSide() {
               >
                 Se connecter
               </Button>
-<<<<<<< HEAD
-              
-              <Grid container>
-                <Grid item xs>
-                <Link href="#" variant="body2" sx={{ color: 'black' }} onClick={handleForgotPassword}>
-=======
               <div className="google-sign-in">
   <button type="button" >
   <Link to="http://localhost:5000/auth/google"  >Continuer avec Google</Link>    <FcGoogle size={"25px"} className="iconeGoogle" />
@@ -252,7 +171,6 @@ export default function SignInSide() {
               <Grid container>
                 <Grid item xs>
                   <Link href="#" variant="body2" sx={{ color: 'black' }} onClick={handleForgotPassword}>
->>>>>>> f6edfea166a0d2aa7d4ca4fa19f0bf269a63414d
                     Mot de passe oublié?
                   </Link>
                 </Grid>
@@ -262,20 +180,11 @@ export default function SignInSide() {
                   </Link>
                 </Grid>
               </Grid>
-<<<<<<< HEAD
-              
-=======
-
->>>>>>> f6edfea166a0d2aa7d4ca4fa19f0bf269a63414d
             </Box>
           </Box>
         </Grid>
       </Grid>
-<<<<<<< HEAD
-      <div className="footer-container"> 
-=======
       <div className="footer-container">
->>>>>>> f6edfea166a0d2aa7d4ca4fa19f0bf269a63414d
         <Footer />
       </div>
     </ThemeProvider>

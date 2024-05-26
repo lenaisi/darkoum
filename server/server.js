@@ -1,24 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-<<<<<<< HEAD
-=======
 const passport = require("passport")
->>>>>>> f6edfea166a0d2aa7d4ca4fa19f0bf269a63414d
 require('dotenv').config({path:'./config/.env'});
 require('./config/db');
 const cors = require('cors');
 const authroute = require('../server/routes/user.routes');
-<<<<<<< HEAD
-const adminroute = require('../server/routes/admin.routes');
-const houseroute = require('../server/routes/house.routes');
-const formroute = require('../server/routes/form.routes');
-const formvisitroute = require('../server/routes/formvisit.routes');
-const {checkUser, requireAuth} = require ('./middlewares/auth.middleware');
-
-const app = express();
-
-=======
 const formroute = require('../server/routes/form.routes');
 const {checkUser, requireAuth} = require ('./middlewares/auth.middleware');
 const User = require('./models/user.model')
@@ -27,7 +14,6 @@ const app = express();
 const session = require('express-session')
 
 const jwt = require('jsonwebtoken');
->>>>>>> f6edfea166a0d2aa7d4ca4fa19f0bf269a63414d
 const corsOptions = {
     origin: process.env.CLIENT_URL,
     credentials: true,
@@ -44,8 +30,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 
-<<<<<<< HEAD
-=======
 app.use(session({
   secret: process.env.TOKEN_SECRET,
   resave: false,
@@ -103,7 +87,6 @@ app.get('/auth/protected', isLoggedIn, (req, res) => {
   }
 });
 
->>>>>>> f6edfea166a0d2aa7d4ca4fa19f0bf269a63414d
 app.get('*', checkUser );
 app.get('/jwtid', requireAuth, (req, res) => {
     res.status(200).send(res.locals.user._id)
@@ -112,15 +95,7 @@ app.get('/jwtid', requireAuth, (req, res) => {
 
 // routes
 app.use('/api/v1/auth',authroute) ;
-<<<<<<< HEAD
-app.use('/api/v1/admin', adminroute); 
-app.use('/api/v1/houses', houseroute); 
 app.use('/api/v2/form', formroute);
-app.use('/api/v3/formvisit', formvisitroute);
-
-=======
-app.use('/api/v2/form', formroute);
->>>>>>> f6edfea166a0d2aa7d4ca4fa19f0bf269a63414d
 
 
 
