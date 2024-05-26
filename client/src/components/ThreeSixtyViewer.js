@@ -1,14 +1,16 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import '@fortawesome/fontawesome-free/css/all.min.css'; // Importer FontAwesome CSS
+import { gsap } from 'gsap'; // Importer GSAP
 
 const ThreeSixtyViewer = () => {
   const mountRef = useRef(null);
   let scene, camera, renderer, controls;
-  let poiObjects = []; // Array to store the points of interest objects
+  let poiObjects = []; // pour stocker les points d'intérêt
 
   useEffect(() => {
-    // Initialize scene, camera, and renderer
+    // Initialiser la scène, la caméra et le rendu
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(
       75,
@@ -26,10 +28,10 @@ const ThreeSixtyViewer = () => {
     controls.enableZoom = false;
     controls.enablePan = false;
 
-    // Load 360 texture
+    // Charger la texture 360
     const textureLoader = new THREE.TextureLoader();
     textureLoader.load(
-      '/pipi.jpg', // Provide the correct path to your 360 image
+      '/pipi.jpg', // Fournir le chemin correct vers votre image 360
       (texture) => {
         const geometry = new THREE.SphereGeometry(500, 60, 40);
         geometry.scale(-1, 1, 1);
@@ -40,23 +42,24 @@ const ThreeSixtyViewer = () => {
       },
       undefined,
       (error) => {
-        console.error('An error occurred loading the texture:', error);
+        console.error('Une erreur est survenue lors du chargement de la texture :', error);
       }
     );
 
-    // Add points of interest
+    // Ajouter les points d'intérêt
     const poiPositions = [
       { x: 100, y: 50, z: 200 },
       { x: -150, y: 20, z: 250 },
       { x: 50, y: -100, z: 180 }
     ];
 
-    poiPositions.forEach((poiPos, index) => {
+    poiPositions.forEach((poiPos) => {
       const poiGeometry = new THREE.SphereGeometry(5, 32, 32);
-      const poiMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 }); // Red
+      const poiMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 }); // Rouge
       const poi = new THREE.Mesh(poiGeometry, poiMaterial);
       poi.position.set(poiPos.x, poiPos.y, poiPos.z);
-      poiObjects.push(poi); // Add the point of interest object to the array
+      poi.visible = true; // Assurez-vous que le POI est visible au départ
+      poiObjects.push(poi); // Ajouter l'objet du point d'intérêt au tableau
       scene.add(poi);
     });
 
@@ -69,37 +72,61 @@ const ThreeSixtyViewer = () => {
     window.addEventListener('resize', onWindowResize, false);
 
     const onPoiClick = (event) => {
-      // Get mouse click position
+      // Réinitialiser l'orientation de la caméra
+      controls.target.set(0, 0, 0);
+      camera.lookAt(0, 0, -1);
+    
+      // Obtenir la position du clic de la souris par rapport au canvas
+      const rect = renderer.domElement.getBoundingClientRect();
       const mouse = new THREE.Vector2(
-        (event.clientX / window.innerWidth) * 2 - 1,
-        -(event.clientY / window.innerHeight) * 2 + 1
+        ((event.clientX - rect.left) / rect.width) * 2 - 1,
+        -((event.clientY - rect.top) / rect.height) * 2 + 1
       );
-
-      // Raycast to detect intersections with points of interest objects
+    
+      // Utiliser le Raycaster pour détecter les intersections avec les POIs
       const raycaster = new THREE.Raycaster();
       raycaster.setFromCamera(mouse, camera);
-
-      // Find intersected objects
+    
+      // Trouver les objets intersectés
       const intersects = raycaster.intersectObjects(poiObjects);
-
-      // If intersections are found, move the camera to the first point of interest
+    
+      // Si des intersections sont trouvées, animer la caméra vers le premier POI
       if (intersects.length > 0) {
-        const targetPosition = intersects[0].object.position;
-        controls.target.copy(targetPosition);
-        controls.update();
+        const targetPoi = intersects[0].object;
+        const targetPosition = targetPoi.position.clone();
+        targetPoi.visible = false; // Rendre le POI invisible
+    
+        gsap.to(camera.position, {
+          duration: 2,
+          x: targetPosition.x,
+          y: targetPosition.y,
+          z: targetPosition.z - 10, // Ajuster cette valeur pour contrôler la distance du POI
+          onUpdate: () => {
+            controls.update();
+          }
+        });
+        gsap.to(controls.target, {
+          duration: 2,
+          x: targetPosition.x,
+          y: targetPosition.y,
+          z: targetPosition.z,
+          onUpdate: () => {
+            controls.update();
+          }
+        });
       }
     };
 
-    window.addEventListener('click', onPoiClick, false);
+    mountRef.current.addEventListener('click', onPoiClick, false);
 
     const rotateCamera = (direction) => {
       const angle = 0.1;
       const offset = new THREE.Vector3();
 
-      // Calculate the offset from the target to the camera
+      // Calculer le décalage de la cible vers la caméra
       offset.copy(camera.position).sub(controls.target);
 
-      // Rotate the offset
+      // Faire pivoter le décalage
       if (direction === 'up') {
         offset.applyAxisAngle(new THREE.Vector3(1, 0, 0), angle);
       } else if (direction === 'down') {
@@ -110,7 +137,7 @@ const ThreeSixtyViewer = () => {
         offset.applyAxisAngle(new THREE.Vector3(0, 1, 0), -angle);
       }
 
-      // Set the new camera position
+      // Définir la nouvelle position de la caméra
       camera.position.copy(controls.target).add(offset);
       camera.lookAt(controls.target);
       controls.update();
@@ -137,10 +164,6 @@ const ThreeSixtyViewer = () => {
 
     window.addEventListener('keydown', onKeyDown, false);
 
-    const disableScroll = (event) => {
-      event.preventDefault();
-    };
-
     const onMouseEnter = () => {
       document.body.style.overflow = 'hidden';
     };
@@ -152,7 +175,7 @@ const ThreeSixtyViewer = () => {
     mountRef.current.addEventListener('mouseenter', onMouseEnter);
     mountRef.current.addEventListener('mouseleave', onMouseLeave);
 
-    // Animate the scene
+    // Animer la scène
     const animate = () => {
       requestAnimationFrame(animate);
       controls.update();
@@ -161,10 +184,10 @@ const ThreeSixtyViewer = () => {
 
     animate();
 
-    // Cleanup when the component is unmounted
+    // Nettoyer lors du démontage du composant
     return () => {
       window.removeEventListener('resize', onWindowResize);
-      window.removeEventListener('click', onPoiClick);
+      mountRef.current.removeEventListener('click', onPoiClick);
       window.removeEventListener('keydown', onKeyDown);
       mountRef.current.removeEventListener('mouseenter', onMouseEnter);
       mountRef.current.removeEventListener('mouseleave', onMouseLeave);
@@ -172,7 +195,38 @@ const ThreeSixtyViewer = () => {
     };
   }, []);
 
-  return <div ref={mountRef} style={{ width: '100vw', height: '100vh' }} />;
+  // Fonction pour basculer en mode plein écran
+  const toggleFullScreen = () => {
+    if (!document.fullscreenElement) {
+      mountRef.current.requestFullscreen().catch((err) => {
+        alert(`Erreur lors de la tentative de passer en mode plein écran : ${err.message} (${err.name})`);
+      });
+    } else {
+      document.exitFullscreen();
+    }
+  };
+
+  return (
+    <div ref={mountRef} style={{ position: 'relative', width: '100vw', height: '100vh' }}>
+      <button
+        onClick={toggleFullScreen}
+        style={{
+          position: 'absolute',
+          top: '10px',
+          right: '10px',
+          zIndex: 1,
+          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          color: 'white',
+          border: 'none',
+          borderRadius: '5px',
+          padding: '10px',
+          cursor: 'pointer'
+        }}
+      >
+        <i className="fas fa-expand"></i>
+      </button>
+    </div>
+  );
 };
 
 export default ThreeSixtyViewer;

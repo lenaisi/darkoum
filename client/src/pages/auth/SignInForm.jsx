@@ -66,6 +66,7 @@ export default function SignInSide() {
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
       <Navbar sx={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 1 }} />
+
       <Grid container component="main" sx={{ height: '100vh', paddingTop: '64px' }}>
         <CssBaseline />
         <Grid
@@ -180,6 +181,7 @@ export default function SignInSide() {
                   </Link>
                 </Grid>
               </Grid>
+
             </Box>
           </Box>
         </Grid>

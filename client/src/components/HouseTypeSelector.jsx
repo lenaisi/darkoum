@@ -1,20 +1,12 @@
 import React, { useState } from 'react';
 
-const HouseTypeSelector = ({ onChange }) => {
-    const [selectedOption, setSelectedOption] = useState('');
-
-    const handleOptionSelect = (event) => {
-        const selectedValue = event.target.value;
-        setSelectedOption(selectedValue);
-        onChange(selectedValue); // Appel de la fonction de rappel avec la nouvelle valeur sélectionnée
-    }
 const HouseTypeSelector = () => {
     const [selectedOption, setSelectedOption] = useState(''); 
 
     const handleOptionSelect = (event) => {
         setSelectedOption(event.target.value); 
     };
-}
+
     return (
         <div>
             <label htmlFor="house-type"></label>

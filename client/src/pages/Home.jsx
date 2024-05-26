@@ -5,6 +5,8 @@ import Section from '../components/Section';
 import Properties from '../components/properties';
 import Banner from '../components/Banner';
 import VirtualTour from '../components/VirtualTour'; 
+import ThreeSixtyViewer from '../components/ThreeSixtyViewer';
+
 
 const Home = () => {
   return (
@@ -16,17 +18,20 @@ const Home = () => {
      <div className="section">
       <Section/>
      </div>
-     <div className="Banner">
+     {/* <div className="Banner">
       <Banner/>
-     </div>
+     </div> */}
 
      <div className="properties">
       <Properties/>
      </div>
      
-     <div className="virtual-tour">
+     {/* <div className="virtual-tour">
        <VirtualTour />
-     </div>
+     </div> */}
+     <div>
+      <ThreeSixtyViewer />
+    </div>
 
       <div className="space-between-sections" style={styles.space}></div>
       <div className="footer-container"> 

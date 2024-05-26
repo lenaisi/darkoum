@@ -3,7 +3,7 @@ import Image from '../assets/immo.jpg';
 
 const Banner = () => {
     return (
-        <section className='h-full max-h-[640px] mn-8 xl:mb-2' style={{ marginTop: '-50px' ,marginBottom:'-500px'}}> {/* Appliquer une marge négative */}
+        <section className='h-full max-h-[640px] mn-8 xl:mb-2' style={{ marginTop: '-8px' }}> {/* Appliquer une marge négative */}
           <div className='flex flex-col lg:flex-row items-center justify-center lg:justify-start'> 
           
             <div>
